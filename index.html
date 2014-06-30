@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Field Day Log by KD8PMH</title>
+    <link rel="stylesheet" href="ui.css">
+  </head>
+  <body><form id="log_form">
+    <div id="header">
+      <label for="operator">Operator</label>: <input id="operator" required placeholder="call sign">
+      <label for="logger">Logger</label>: <input id="logger" placeholder="call sign">
+      <label for="band">Band</label>:
+        <select id="band" required>
+          <option value="160">160</option>
+          <option value="80">80</option>
+          <option value="40">40</option>
+          <option value="20">20</option>
+          <option value="15">15</option>
+          <option value="10">10</option>
+          <option value="6">6</option>
+          <option value="2">2</option>
+          <option value="1.25">1.25</option>
+          <option value="70cm">70cm</option>
+          <option value="33cm">33cm</option>
+          <option value="23cm">23cm</option>
+          <option value="OTH">other</option>
+        </select>
+      <label for="mode">Mode</label>:
+        <select id="mode" required>
+          <option value="CW">CW</option>
+          <option value="PH">Phone</option>
+          <option value="DIG">Digital</option>
+        </select>
+    </div>
+    <div id="last20"><table>
+      <thead>
+        <th>Call sign</th>
+        <th>Band</th>
+        <th>Mode</th>
+        <th>Class</th>
+        <th>Section</th>
+        <th>Time</th>
+        <th>Operator</th>
+        <th>Logger</th>
+      </thead>
+      <tbody></tbody>
+    </table></div>
+    <div id="new">
+      <table>
+        <tr>
+          <td><label for="call">Call sign</label></td>
+          <td><label for="class">Class</label></td>
+          <td><label for="section">Section</label></td>
+        </tr><tr>
+          <td><input id="call" required placeholder="call sign"></td>
+          <td><input id="class" required placeholder="1A" pattern="\d+([ABCDEF]|AB|BB)"></td>
+          <td><select id="section"></select></td>
+          <td><input type="submit"></td>
+        </tr>
+      </table>
+    </div>
+    <div id="sections_container"><div id="sections">
+      <div id="area_1" class="area"><div class="area_title">1</div></div>
+      <div id="area_2" class="area"><div class="area_title">2</div></div>
+      <div id="area_3" class="area"><div class="area_title">3</div></div>
+      <div id="area_4" class="area"><div class="area_title">4</div></div>
+      <div id="area_5" class="area"><div class="area_title">5</div></div>
+      <div id="area_6" class="area"><div class="area_title">6</div></div>
+      <div id="area_7" class="area"><div class="area_title">7</div></div>
+      <div id="area_8" class="area"><div class="area_title">8</div></div>
+      <div id="area_9" class="area"><div class="area_title">9</div></div>
+      <div id="area_0" class="area"><div class="area_title">0</div></div>
+      <div id="area_canada" class="area"><div class="area_title">Canada</div></div>
+    </div></div>
+    <script src="jquery.min.js"></script>
+    <script src="ui.js"></script>
+  </form></body>
+</html>

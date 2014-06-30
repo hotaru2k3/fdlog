@@ -1,0 +1,7 @@
+AddDefaultCharset utf-8
+AddType text/javascript .js
+AddType application/json .json
+AddCharset utf-8 .js
+AddCharset utf-8 .json
+AddCharset utf-8 .css
+AddOutputFilterByType DEFLATE text/html text/css text/javascript application/json
