@@ -8,6 +8,13 @@ function handle_sections(data) {
     }
     if(area != 'DX') $('#area_' + area).append(ul);
   }
+  var sections = $('#section').children('option');
+  sections.sort(function(a,b) {
+    if(a.value > b.value) return 1;
+    if(a.value < b.value) return -1;
+    return 0;
+  });
+  sections.detach().appendTo($('#section'));
   $('#section').val('');
 }
 
@@ -48,16 +55,36 @@ function submit_form() {
 }
 
 $(document).ready(function() { 
-  $('#band').val('');
-  $('#mode').val('');
+  $('#operator').val($.cookie('operator'));
+  $('#logger').val($.cookie('logger'));
+  $('#band').val($.cookie('band'));
+  $('#mode').val($.cookie('mode'));
   $(log_form).submit(submit_form);
   $.getJSON('data/sections.json', {}, handle_sections);
   (function poll() {
      $.ajax({ url: 'data/status.json', success: handle_status, dataType: 'json',
             complete: poll, timeout: 15000});
   })();
-  $('#operator').change(function() { $('#operator').val($('#operator').val().toUpperCase()); });
-  $('#logger').change(function() { $('#logger').val($('#logger').val().toUpperCase()); });
-  $('#call').change(function() { $('#call').val($('#call').val().toUpperCase()); });
-  $('#class').change(function() { $('#class').val($('#class').val().toUpperCase()); });
+  $('#operator').change(function() {
+    var operator = $('#operator').val().toUpperCase();
+    $('#operator').val(operator);
+    $.cookie('operator', operator, { expires: 7 });
+  });
+  $('#logger').change(function() {
+    var logger = $('#logger').val().toUpperCase();
+    $('#logger').val(logger);
+    $.cookie('logger', logger, { expires: 7 });
+  });
+  $('#band').change(function() {
+     $.cookie('band', $('#band').val(), { expires: 7 });
+  });
+  $('#mode').change(function() {
+     $.cookie('mode', $('#mode').val(), { expires: 7 });
+  });
+  $('#call').change(function() {
+    $('#call').val($('#call').val().toUpperCase());
+  });
+  $('#class').change(function() {
+    $('#class').val($('#class').val().toUpperCase());
+  });
 });
