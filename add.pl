@@ -22,7 +22,7 @@ $dbh->do('CREATE TABLE IF NOT EXISTS contacts' .
         ) or error('500 Internal Server Error', 'CREATE TABLE failed');
 
 my $query = CGI->new;
-if($query->request_method() == 'POST') {
+if($query->request_method() =~ /^post$/i) {
   my $call = $query->param('call')
      or error('400 Bad Request', 'call is empty');
   my $band = $query->param('band')
