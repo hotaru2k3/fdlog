@@ -40,6 +40,10 @@ function handle_status(data) {
 }
 
 function submit_form() {
+  if($('#call').hasClass('dup')) {
+    alert('Duplicate!');
+    return false;
+  }
   var data = { 'call': $('#call').val(),
                'band': $('#band').val(),
                'mode': $('#mode').val(),
@@ -83,6 +87,20 @@ $(document).ready(function() {
   });
   $('#call').change(function() {
     $('#call').val($('#call').val().toUpperCase());
+    $('#call').removeClass('dup');
+    $('#class').removeClass('dup');
+    $('#section').removeClass('dup');
+    $.getJSON('dup.pl', { call: $('#call').val() }, function(data) {
+      if(data.length) {
+        $('#class').val(data[3]);
+        $('#section').val(data[4]);
+        if(data[1] == $('#band').val() && data[2] == $('#mode').val()) {
+          $('#call').addClass('dup');
+          $('#class').addClass('dup');
+          $('#section').addClass('dup');
+        }
+      }
+    });
   });
   $('#class').change(function() {
     $('#class').val($('#class').val().toUpperCase());

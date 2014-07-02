@@ -16,17 +16,16 @@ body {
   border-collapse: collapse;
 }
 
-#last20 thead, #last20 tbody {
+#last20 thead {
   display: block;
   padding-left: 1em;
-  padding-right: 1em;
-}
-
-#last20 thead {
   padding-right: 3em;
 }
 
 #last20 tbody {
+  display: block;
+  padding-left: 1em;
+  padding-right: 1em;
   height: 10em;
   overflow: auto;
 }
@@ -70,4 +69,8 @@ body {
   background-color: black;
   color: white;
   text-align: center;
+}
+
+.dup {
+  background-color: red;
 }
