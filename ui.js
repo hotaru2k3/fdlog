@@ -67,7 +67,7 @@ $(document).ready(function() {
   $.getJSON('data/sections.json', {}, handle_sections);
   (function poll() {
      $.ajax({ url: 'data/status.json', success: handle_status, dataType: 'json',
-            complete: poll, timeout: 15000});
+            complete: function(){setTimeout(poll, 15000)} });
   })();
   $('#operator').change(function() {
     var operator = $('#operator').val().toUpperCase();
