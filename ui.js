@@ -65,10 +65,8 @@ $(document).ready(function() {
   $('#mode').val($.cookie('mode'));
   $(log_form).submit(submit_form);
   $.getJSON('data/sections.json', {}, handle_sections);
-  (function poll() {
-     $.ajax({ url: 'data/status.json', success: handle_status, dataType: 'json',
-            complete: function(){setTimeout(poll, 15000)} });
-  })();
+  var status = new EventSource('status.pl');
+  status.addEventListener('message', function(e) { handle_status(JSON.parse(e.data)); });
   $('#operator').change(function() {
     var operator = $('#operator').val().toUpperCase();
     $('#operator').val(operator);
