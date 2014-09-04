@@ -17,17 +17,18 @@ print CGI::header(-type => 'text/event-stream',
 print "retry: 0\n";
 my $last_id = $query->http('Last-Event-ID') or $query->https('Last-Event-ID');
 @stat = stat($filename);
-if($last_id == $stat[9])
-{ my $inotify = new Linux::Inotify2();
-  $inotify->watch($filename, IN_CLOSE_WRITE);
-  my @events = $inotify->read(); }
-open my $status, '<', $filename;
-flock $status, LOCK_SH;
-@stat = stat($status);
-print "id: $stat[9]\n";
-for my $line (<$status>)
-{ chomp $line;
-  print "data:$line\n"; }
-flock $status, LOCK_UN;
-close $status;
-print "\n";
+while(1)
+{ if($last_id == $stat[9])
+  { my $inotify = new Linux::Inotify2();
+    $inotify->watch($filename, IN_CLOSE_WRITE);
+    my @events = $inotify->read(); }
+  open my $status, '<', $filename;
+  flock $status, LOCK_SH;
+  @stat = stat($status);
+  print "id: $stat[9]\n";
+  for my $line (<$status>)
+  { chomp $line;
+    print "data:$line\n"; }
+  flock $status, LOCK_UN;
+  close $status;
+  print "\n"; }
