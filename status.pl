@@ -31,4 +31,5 @@ while(1)
     print "data:$line\n"; }
   flock $status, LOCK_UN;
   close $status;
-  print "\n"; }
+  print "\n";
+  $last_id = $stat[9]; }
