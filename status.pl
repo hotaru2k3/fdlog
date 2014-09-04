@@ -19,7 +19,7 @@ my $last_id = $query->http('Last-Event-ID') or $query->https('Last-Event-ID');
 @stat = stat($filename);
 if($last_id == $stat[9])
 { my $inotify = new Linux::Inotify2();
-  $inotify->watch($filename, IN_CLOSE_WRITE);
+  $inotify->watch($filename, IN_MODIFY | IN_CLOSE_WRITE);
   my @events = $inotify->read(); }
 open my $status, '<', $filename;
 flock $status, LOCK_SH;
