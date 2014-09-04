@@ -34,6 +34,7 @@ function handle_status(data) {
     });
     $('#last20 tbody').append(tr);
   });
+  $('li').removeClass('worked');
   $.each(data.sections_worked, function(i, section) {
     $('#' + section).addClass('worked');
   });
