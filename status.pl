@@ -18,7 +18,7 @@ print CGI::header(-type => 'text/event-stream',
 print "retry: 0\n";
 my $last_id = $query->http('Last-Event-ID') or $query->https('Last-Event-ID');
 @stat = stat($filename);
-if($last_id == $stat[9]||1)
+if($last_id == $stat[9])
 { my $inotify = new Linux::Inotify2();
   $inotify->watch($filename, IN_MODIFY | IN_CLOSE_WRITE);
   $inotify->blocking(0);
