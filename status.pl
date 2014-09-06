@@ -22,7 +22,7 @@ if($last_id == $stat[9])
 { my $inotify = new Linux::Inotify2();
   $inotify->watch($filename, IN_MODIFY | IN_CLOSE_WRITE);
   $inotify->blocking(0);
-  my $end = time() + 900;
+  my $end = time() + 30;
   while(!$inotify->read())
   { if(time() > $end)
     { print "\n";
