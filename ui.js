@@ -1,14 +1,15 @@
 function handle_sections(data) {
-  for(var area in data) {
+  var area, section, ul, sections;
+  for(area in data) {
     $('#area_' + area).append('<ul>');
-    var ul = $('<ul>');
-    for(var section in data[area]) {
+    ul = $('<ul>');
+    for(section in data[area]) {
       $('#section').append('<option value="' + section + '">' + section + '</option>');
       ul.append('<li id="' + section + '"><abbr title="' + data[area][section] + '">' + section + '</abbr></li>');
     }
     if(area != 'DX') $('#area_' + area).append(ul);
   }
-  var sections = $('#section').children('option');
+  sections = $('#section').children('option');
   sections.sort(function(a,b) {
     if(a.value > b.value) return 1;
     if(a.value < b.value) return -1;
