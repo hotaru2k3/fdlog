@@ -72,18 +72,18 @@ $(document).ready(function() {
   $('#operator').change(function() {
     var operator = $('#operator').val().toUpperCase();
     $('#operator').val(operator);
-    $.cookie('operator', operator, { expires: 7 });
+    $.cookie('operator', operator, { expires: 1, path: location.pathname });
   });
   $('#logger').change(function() {
     var logger = $('#logger').val().toUpperCase();
     $('#logger').val(logger);
-    $.cookie('logger', logger, { expires: 7 });
+    $.cookie('logger', logger, { expires: 1, path: location.pathname });
   });
   $('#band').change(function() {
-     $.cookie('band', $('#band').val(), { expires: 7 });
+     $.cookie('band', $('#band').val(), { expires: 1, path: location.pathname });
   });
   $('#mode').change(function() {
-     $.cookie('mode', $('#mode').val(), { expires: 7 });
+     $.cookie('mode', $('#mode').val(), { expires: 1, path: location.pathname });
   });
   $('#call').change(function() {
     $('#call').val($('#call').val().toUpperCase());
